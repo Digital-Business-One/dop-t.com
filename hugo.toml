@@ -1,0 +1,61 @@
+baseURL = "https://dop-t.com/"
+title = "DOP"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[outputs]
+  home = ["HTML"]
+
+# ── Languages ────────────────────────────────────────────────────────────────
+# Both are first-class. The translation check in `make check` refuses a page
+# that exists in one language and not the other, so a half-translated site
+# cannot ship — the failure mode a product site cannot afford, because the
+# missing half is what a prospect happens to land on.
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+  [languages.pt-br]
+    languageName = "Português"
+    weight = 2
+
+# ── Content ──────────────────────────────────────────────────────────────────
+# EVERY block below renders only when its value is non-empty. A blank is
+# invisible, never an empty box or a bracketed placeholder — the difference
+# between a site that reads as lean and one that reads as unfinished.
+#
+# The convention is inherited from barrosef.com, where it works.
+
+[params]
+  description = ""
+
+  # The four plans. They are ALSO a catalog in the product's database, read by
+  # the sign-up wizard — see the DOP platform's profile-onboarding spec.
+  #
+  # These two lists WILL diverge, because nothing links them. That is accepted:
+  # this one is marketing copy and may say "from small teams to the whole
+  # engineering org"; the product's one is data the agent operates on. What must
+  # never diverge is the set of NAMES. If a plan is added or renamed, it changes
+  # in both places or the site lies about what somebody can buy.
+  [params.plans]
+    enabled = false
+
+  # Legal pages. These are not decoration and not optional:
+  #
+  # Google's OAuth verification — the step that moves the consent screen out of
+  # Testing and removes the seven-day token expiry — REQUIRES a privacy policy
+  # hosted on a domain the applicant owns. So this site is a hard dependency of
+  # the platform's production sign-in, not a marketing side quest.
+  [params.legal]
+    privacyPath = ""
+    termsPath = ""
+
+  # Where the product lives. Empty until the environment answers.
+  [params.app]
+    signInURL = ""

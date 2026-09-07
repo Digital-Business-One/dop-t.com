@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+    {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
+    {{/* Open Graph is not decoration on a product site: it is what a link
+         pasted into a chat renders as, which is where most first impressions
+         of a B2B product actually happen. */}}
+    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ .Permalink }}">
+    {{ with .Site.Params.description }}<meta property="og:description" content="{{ . }}">{{ end }}
+    <meta name="twitter:card" content="summary_large_image">
+    {{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+    {{ end }}
+  </head>
+  <body>
+    <main>{{ block "main" . }}{{ end }}</main>
+  </body>
+</html>
