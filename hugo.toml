@@ -18,11 +18,18 @@ enableRobotsTXT = true
 # missing half is what a prospect happens to land on.
 
 [languages]
+  # contentDir is NOT optional here. Without it Hugo reads `content/en/` as a
+  # SECTION called "en" instead of as English's content root: the home page ends
+  # up with no `_index.md` at all, renders with an empty body, and still builds
+  # green — the title comes from the site config, so the page looks plausible
+  # and says nothing.
   [languages.en]
     languageName = "English"
+    contentDir = "content/en"
     weight = 1
   [languages.pt-br]
     languageName = "Português"
+    contentDir = "content/pt-br"
     weight = 2
 
 # ── Content ──────────────────────────────────────────────────────────────────

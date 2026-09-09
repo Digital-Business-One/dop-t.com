@@ -2,4 +2,13 @@
   <h1>{{ .Site.Title }}</h1>
   {{ with .Site.Params.description }}<p>{{ . }}</p>{{ end }}
   {{ .Content }}
+  {{/* The language switch is the cheapest proof that both trees were built and
+       published, not just the default one. */}}
+  {{ with .AllTranslations }}
+    <nav>
+      {{ range . }}{{ if ne .Language.Lang $.Language.Lang }}
+        <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+      {{ end }}{{ end }}
+    </nav>
+  {{ end }}
 {{ end }}

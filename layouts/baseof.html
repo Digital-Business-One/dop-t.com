@@ -15,6 +15,29 @@
     <meta name="twitter:card" content="summary_large_image">
     {{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
     {{ end }}
+    {{/* Inline and small on purpose. A stylesheet is a second request that can
+         fail on its own, and this page's job today is to prove the first one
+         arrives. It grows into a file when there is a design to hold. */}}
+    <style>
+      :root { color-scheme: light dark; }
+      body {
+        margin: 0; padding: 12vh 6vw; max-width: 42rem;
+        font: 16px/1.7 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        color: #16181d; background: #fbfbfa;
+      }
+      h1 { font-size: 2rem; letter-spacing: -0.02em; margin: 0 0 1.5rem; }
+      p { margin: 0 0 1.1rem; }
+      .meta { font-size: 0.875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1.1rem; margin-top: 2rem; }
+      nav { margin-top: 2.5rem; font-size: 0.875rem; }
+      nav a { color: #6b7280; text-decoration: none; border-bottom: 1px solid #d1d5db; }
+      nav a:hover { color: #16181d; }
+      @media (prefers-color-scheme: dark) {
+        body { color: #e7e9ee; background: #101216; }
+        .meta { color: #9aa3af; border-color: #262b33; }
+        nav a { color: #9aa3af; border-color: #343a44; }
+        nav a:hover { color: #e7e9ee; }
+      }
+    </style>
   </head>
   <body>
     <main>{{ block "main" . }}{{ end }}</main>
